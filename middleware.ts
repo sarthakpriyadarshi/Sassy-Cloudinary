@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 
 const isPublicRoute = createRouteMatcher([
   "/",
-  "/signin",
-  "/signup",
+  "/sign-in*",
+  "/sign-up*",
   "/_next/image*",
   "/_next/static*",
   "/home",
@@ -19,16 +19,17 @@ export default clerkMiddleware(async (auth, req) => {
   const isApiRequest = currentUrl.pathname.startsWith("/api");
 
   if (userId && isPublicRoute(req) && !isAccessingDashboard) {
+    console.log(userId, "User is logged in and accessing a public route");
     return NextResponse.redirect(new URL("/home", req.url));
   }
 
   if (!userId) {
     if (!isPublicApiRoute(req) && !isPublicRoute(req)) {
-      return NextResponse.redirect(new URL("/signin", req.url));
+      return NextResponse.redirect(new URL("/sign-in", req.url));
     }
 
     if (isApiRequest && !isPublicApiRoute(req)) {
-      return NextResponse.redirect(new URL("/signin", req.url));
+      return NextResponse.redirect(new URL("/sign-in", req.url));
     }
   }
 });
