@@ -875,8 +875,18 @@ export namespace Prisma {
 
   export type AggregateVideo = {
     _count: VideoCountAggregateOutputType | null
+    _avg: VideoAvgAggregateOutputType | null
+    _sum: VideoSumAggregateOutputType | null
     _min: VideoMinAggregateOutputType | null
     _max: VideoMaxAggregateOutputType | null
+  }
+
+  export type VideoAvgAggregateOutputType = {
+    duration: number | null
+  }
+
+  export type VideoSumAggregateOutputType = {
+    duration: number | null
   }
 
   export type VideoMinAggregateOutputType = {
@@ -886,7 +896,7 @@ export namespace Prisma {
     publicId: string | null
     originalSize: string | null
     compressedSize: string | null
-    duration: string | null
+    duration: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -898,7 +908,7 @@ export namespace Prisma {
     publicId: string | null
     originalSize: string | null
     compressedSize: string | null
-    duration: string | null
+    duration: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -916,6 +926,14 @@ export namespace Prisma {
     _all: number
   }
 
+
+  export type VideoAvgAggregateInputType = {
+    duration?: true
+  }
+
+  export type VideoSumAggregateInputType = {
+    duration?: true
+  }
 
   export type VideoMinAggregateInputType = {
     id?: true
@@ -992,6 +1010,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: VideoAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: VideoSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: VideoMinAggregateInputType
@@ -1022,6 +1052,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: VideoCountAggregateInputType | true
+    _avg?: VideoAvgAggregateInputType
+    _sum?: VideoSumAggregateInputType
     _min?: VideoMinAggregateInputType
     _max?: VideoMaxAggregateInputType
   }
@@ -1033,10 +1065,12 @@ export namespace Prisma {
     publicId: string
     originalSize: string
     compressedSize: string
-    duration: string
+    duration: number
     createdAt: Date
     updatedAt: Date
     _count: VideoCountAggregateOutputType | null
+    _avg: VideoAvgAggregateOutputType | null
+    _sum: VideoSumAggregateOutputType | null
     _min: VideoMinAggregateOutputType | null
     _max: VideoMaxAggregateOutputType | null
   }
@@ -1115,7 +1149,7 @@ export namespace Prisma {
       publicId: string
       originalSize: string
       compressedSize: string
-      duration: string
+      duration: number
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["video"]>
@@ -1547,7 +1581,7 @@ export namespace Prisma {
     readonly publicId: FieldRef<"Video", 'String'>
     readonly originalSize: FieldRef<"Video", 'String'>
     readonly compressedSize: FieldRef<"Video", 'String'>
-    readonly duration: FieldRef<"Video", 'String'>
+    readonly duration: FieldRef<"Video", 'Float'>
     readonly createdAt: FieldRef<"Video", 'DateTime'>
     readonly updatedAt: FieldRef<"Video", 'DateTime'>
   }
@@ -1989,6 +2023,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -2029,7 +2077,7 @@ export namespace Prisma {
     publicId?: StringFilter<"Video"> | string
     originalSize?: StringFilter<"Video"> | string
     compressedSize?: StringFilter<"Video"> | string
-    duration?: StringFilter<"Video"> | string
+    duration?: FloatFilter<"Video"> | number
     createdAt?: DateTimeFilter<"Video"> | Date | string
     updatedAt?: DateTimeFilter<"Video"> | Date | string
   }
@@ -2056,7 +2104,7 @@ export namespace Prisma {
     publicId?: StringFilter<"Video"> | string
     originalSize?: StringFilter<"Video"> | string
     compressedSize?: StringFilter<"Video"> | string
-    duration?: StringFilter<"Video"> | string
+    duration?: FloatFilter<"Video"> | number
     createdAt?: DateTimeFilter<"Video"> | Date | string
     updatedAt?: DateTimeFilter<"Video"> | Date | string
   }, "id">
@@ -2072,8 +2120,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: VideoCountOrderByAggregateInput
+    _avg?: VideoAvgOrderByAggregateInput
     _max?: VideoMaxOrderByAggregateInput
     _min?: VideoMinOrderByAggregateInput
+    _sum?: VideoSumOrderByAggregateInput
   }
 
   export type VideoScalarWhereWithAggregatesInput = {
@@ -2086,7 +2136,7 @@ export namespace Prisma {
     publicId?: StringWithAggregatesFilter<"Video"> | string
     originalSize?: StringWithAggregatesFilter<"Video"> | string
     compressedSize?: StringWithAggregatesFilter<"Video"> | string
-    duration?: StringWithAggregatesFilter<"Video"> | string
+    duration?: FloatWithAggregatesFilter<"Video"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Video"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Video"> | Date | string
   }
@@ -2098,7 +2148,7 @@ export namespace Prisma {
     publicId: string
     originalSize: string
     compressedSize: string
-    duration: string
+    duration: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2110,7 +2160,7 @@ export namespace Prisma {
     publicId: string
     originalSize: string
     compressedSize: string
-    duration: string
+    duration: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2122,7 +2172,7 @@ export namespace Prisma {
     publicId?: StringFieldUpdateOperationsInput | string
     originalSize?: StringFieldUpdateOperationsInput | string
     compressedSize?: StringFieldUpdateOperationsInput | string
-    duration?: StringFieldUpdateOperationsInput | string
+    duration?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2134,7 +2184,7 @@ export namespace Prisma {
     publicId?: StringFieldUpdateOperationsInput | string
     originalSize?: StringFieldUpdateOperationsInput | string
     compressedSize?: StringFieldUpdateOperationsInput | string
-    duration?: StringFieldUpdateOperationsInput | string
+    duration?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2146,7 +2196,7 @@ export namespace Prisma {
     publicId: string
     originalSize: string
     compressedSize: string
-    duration: string
+    duration: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2158,7 +2208,7 @@ export namespace Prisma {
     publicId?: StringFieldUpdateOperationsInput | string
     originalSize?: StringFieldUpdateOperationsInput | string
     compressedSize?: StringFieldUpdateOperationsInput | string
-    duration?: StringFieldUpdateOperationsInput | string
+    duration?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2170,7 +2220,7 @@ export namespace Prisma {
     publicId?: StringFieldUpdateOperationsInput | string
     originalSize?: StringFieldUpdateOperationsInput | string
     compressedSize?: StringFieldUpdateOperationsInput | string
-    duration?: StringFieldUpdateOperationsInput | string
+    duration?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2205,6 +2255,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -2233,6 +2294,10 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type VideoAvgOrderByAggregateInput = {
+    duration?: SortOrder
+  }
+
   export type VideoMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
@@ -2255,6 +2320,10 @@ export namespace Prisma {
     duration?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type VideoSumOrderByAggregateInput = {
+    duration?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2293,6 +2362,22 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -2313,6 +2398,14 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -2345,6 +2438,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -2412,6 +2516,22 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
