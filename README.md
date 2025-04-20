@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![Logo](./assets/banner.png)
 
-## Getting Started
+# Tech Overflow
 
-First, run the development server:
+A software as a service project that is used for compressing the video file and generating images for social media platform based on AI with the usage of context.
+
+## Demo
+
+Please visit the link for demo:
+
+[Sassy Cloudinary](https://cloudinary.devsyn.tech)
+
+## Deployment
+
+To deploy this project use vercel
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+or add this repository for deployment to vercel
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Run Locally
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Clone the project
 
-## Learn More
+```bash
+  git clone https://github.com/sarthakpriyadarshi/Sassy-Cloudinary.git
+```
 
-To learn more about Next.js, take a look at the following resources:
+Go to the project directory
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+  cd Sassy-Cloudinary
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Install dependencies
 
-## Deploy on Vercel
+```bash
+  npm install
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Start the server
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+  npm run start
+```
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`DATABASE_URL`
+
+`NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`
+
+`CLOUDINARY_API_KEY`
+
+`CLOUDINARY_API_SECRET`
+
+you will need to add the following environment variables to your .env.local file
+
+`NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+
+`CLERK_SECRET_KEY`
