@@ -80,7 +80,7 @@ function SocialShare() {
   };
 
   return (
-    <div className="container mx-auto p-4 max-w-4xl">
+    <div className="container mx-auto p-4 max-w-4xl text-white">
       <h1 className="text-3xl font-bold mb-6 text-center">
         Social Media Image Creator
       </h1>

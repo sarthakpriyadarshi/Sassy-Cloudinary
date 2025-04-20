@@ -50,7 +50,7 @@ export default function AppLayout({
       />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <header className="w-full bg-base-200">
+        <header className="w-full bg-gray-950 text-white">
           <div className="navbar max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex-none lg:hidden">
               <label
@@ -97,7 +97,7 @@ export default function AppLayout({
           </div>
         </header>
         {/* Page content */}
-        <main className="flex-grow">
+        <main className="flex-grow bg-gray-900">
           <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 my-8">
             {children}
           </div>
@@ -105,9 +105,9 @@ export default function AppLayout({
       </div>
       <div className="drawer-side">
         <label htmlFor="sidebar-drawer" className="drawer-overlay"></label>
-        <aside className="bg-base-200 w-64 h-full flex flex-col">
+        <aside className="bg-gray-950 w-64 h-full flex flex-col">
           <div className="flex items-center justify-center py-4">
-            <CloudIcon className="w-10 h-10 text-primary" />
+            <CloudIcon className="w-10 h-10 text-secondary" />
           </div>
           <ul className="menu p-4 w-full text-base-content flex-grow">
             {sidebarItems.map((item) => (

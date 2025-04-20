@@ -9,6 +9,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+console.log(cloudinary.config());
 interface CloudinaryUploadResult {
   public_id: string;
   [key: string]: unknown;

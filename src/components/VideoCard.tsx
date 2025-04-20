@@ -81,7 +81,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onDownload }) => {
         {isHovered ? (
           previewError ? (
             <div className="w-full h-full flex items-center justify-center bg-gray-200">
-              <p className="text-red-500">Preview not availiable</p>
+              <p className="text-red-500 font-bold">Preview not availiable</p>
             </div>
           ) : (
             <video
@@ -102,32 +102,34 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onDownload }) => {
             className="w-full h-full object-cover"
           />
         )}
-        <div className="absolute bottom-2 right-2 bg-base-100 bg-opacity-70 px-2 py-1 rounded-lg text-sm flex items-center">
+        <div className="absolute bottom-2 right-2 bg-base-100 bg-opacity-70 px-2 py-1 rounded-lg text-sm flex items-center text-sky-300">
           <Clock className="mr-1" size={16} /> {formatDuration(video.duration)}
         </div>
       </figure>
       <div className="card-body p-4">
-        <h2 className="card-title text-lg font-bold">{video.title}</h2>
-        <p className="text-sm text-base-content opacity-70 mb-4">
+        <h2 className="card-title text-lg font-bold text-sky-300">
+          {video.title}
+        </h2>
+        <p className="text-sm  opacity-70 mb-4 text-white">
           {video.description}
         </p>
-        <p className="text-sm text-base-content opacity-70 mb-4">
+        <p className="text-sm text-white opacity-70 mb-4">
           Uploaded {dayjs(Number(video.createdAt)).fromNow()}
         </p>
-        <div className="grid grid-cols-2 gap-4 text-sm">
+        <div className="grid grid-cols-2 gap-4 text-sm text-white">
           <div className="flex items-center">
-            <FileUp size={18} className="mr-2 text-primary" />
-            <div className="font-semibold">Original</div>
+            <FileUp size={18} className="mr-2 text-red-400" />
+            <div className="font-semibold">Original: </div>
             <div>{formatSize(Number(video.originalSize))}</div>
           </div>
           <div className="flex items-center">
-            <FileDown size={18} className="mr-2 text-secondary" />
-            <div className="font-semibold">Compressed</div>
+            <FileDown size={18} className="mr-2 text-green-300" />
+            <div className="font-semibold">Compressed:</div>
             <div>{formatSize(Number(video.compressedSize))}</div>
           </div>
         </div>
         <div className="flex items-center justify-between mt-4">
-          <div className="text-sm font-semibold">
+          <div className="text-sm font-semibold text-green-300">
             Compression:{" "}
             <span className="text-accent">{compressionPercentage}%</span>
           </div>

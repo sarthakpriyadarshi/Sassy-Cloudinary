@@ -24,7 +24,6 @@ export async function POST(request: NextRequest) {
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-
   try {
     if (
       !process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ||
@@ -36,6 +35,7 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
     const formData = await request.formData();
     const file = (formData.get("file") as File) || null;
     const title = formData.get("title") as string;
