@@ -1,6 +1,6 @@
 ![Logo](./assets/banner.png)
 
-# Tech Overflow
+# Sassy Cloudinary
 
 A software as a service project that is used for compressing the video file and generating images for social media platform based on AI with the usage of context.
 
