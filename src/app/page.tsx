@@ -40,7 +40,7 @@ export default function Home() {
                 <div className="inline-block rounded-lg bg-blue-950 px-3 py-1 text-sm text-blue-400">
                   Introducing Sassy Cloudinary
                 </div>
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 py-3">
                   Smart Media Processing for the Modern Web
                 </h1>
                 <p className="mx-auto max-w-[700px] text-gray-400 md:text-xl/relaxed">
