@@ -10,14 +10,17 @@ function VideoUpload() {
   const [isUploading, setIsUploading] = useState(false);
 
   const router = useRouter();
+  //max file size of 60 mb
 
-  const MAX_FILE_SIZE = 70 * 1024 * 1024; // 70 MB
+  const MAX_FILE_SIZE = 70 * 1024 * 1024;
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (!file) return;
+
     if (file.size > MAX_FILE_SIZE) {
-      alert("File size exceeds 70 MB limit.");
+      //TODO: add notification
+      alert("File size too large");
       return;
     }
 
@@ -30,18 +33,20 @@ function VideoUpload() {
 
     try {
       const response = await axios.post("/api/video-upload", formData);
-
-      if (!response.data.success) {
-        alert("Failed to upload video. Please try again.");
+      if (response.status !== 200) {
+        router.push("/sign-in");
+      } else {
         router.push("/");
-        return;
       }
+      // check for 200 response
     } catch (error) {
-      console.error("Error uploading video:", error);
+      console.log(error);
+      // notification for failure
     } finally {
       setIsUploading(false);
     }
   };
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Upload Video</h1>
@@ -52,9 +57,9 @@ function VideoUpload() {
           </label>
           <input
             type="text"
-            className="input input-bordered max-w-full"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            className="input input-bordered w-full"
             required
           />
         </div>
@@ -62,12 +67,10 @@ function VideoUpload() {
           <label className="label">
             <span className="label-text">Description</span>
           </label>
-          <input
-            type="text"
-            className="input input-bordered max-w-full"
+          <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            required
+            className="textarea textarea-bordered w-full"
           />
         </div>
         <div>
@@ -76,18 +79,18 @@ function VideoUpload() {
           </label>
           <input
             type="file"
-            className="input input-bordered max-w-full"
             accept="video/*"
             onChange={(e) => setFile(e.target.files?.[0] || null)}
+            className="file-input file-input-bordered w-full"
             required
           />
         </div>
         <button
           type="submit"
-          className={`btn btn-primary`}
+          className="btn btn-primary"
           disabled={isUploading}
         >
-          {isUploading ? "Uploading..." : "Upload"}
+          {isUploading ? "Uploading..." : "Upload Video"}
         </button>
       </form>
     </div>
